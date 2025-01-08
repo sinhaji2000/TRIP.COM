@@ -1,0 +1,44 @@
+{
+  "name": "track.com",
+  "version": "1.0.0",
+  "description": "a webapp where track money managment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "build:css": "npx tailwindcss -i ./assests/css/main.css -o ./assests/css/tailwind.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinhaji2000/track.com.git"
+  },
+  "author": "Mukesh sinha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sinhaji2000/track.com/issues"
+  },
+  "homepage": "https://github.com/sinhaji2000/track.com#readme",
+  "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "connect-mongo": "^5.1.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.1",
+    "fuse.js": "^7.0.0",
+    "mongoose": "^8.8.4",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.9",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "postcss": "^8.4.49"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.16"
+  }
+}

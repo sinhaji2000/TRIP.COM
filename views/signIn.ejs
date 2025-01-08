@@ -1,0 +1,41 @@
+<!-- Sign-In Form -->
+<div class="flex items-center justify-center min-h-screen px-4">
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md space-y-8">
+    <div class="text-center">
+      <h2 class="mt-2 text-3xl font-bold text-gray-800">Welcome Back</h2>
+      <p class="mt-2 text-sm text-gray-600">Please sign in to your account</p>
+    </div>
+    <form action="/user/signin" method="POST" class="space-y-6">
+      <div class="space-y-5">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+          <input type="email" id="email" name="email" required class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black" placeholder="Enter your email">
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <input type="password" id="password" name="password" required class="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black" placeholder="Enter your password">
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-blue-500 focus:ring-blue-500 border-gray-300 rounded">
+            <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember me</label>
+          </div>
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-500">Forgot password?</a>
+        </div>
+      </div>
+      <button type="submit" class="w-full py-3 px-4 rounded-xl shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:scale-105 transition-transform">Sign in</button>
+    </form>
+
+    <!-- Google Sign-In Button -->
+    <div class="text-center mt-4">
+      <a href="/user/auth/google" class="flex items-center justify-center w-full py-3 px-4 rounded-xl shadow-sm text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 transition-all">
+        <img src="https://techdocs.akamai.com/identity-cloud/img/social-login/identity-providers/iconfinder-new-google-favicon-682665.png" alt="Google Sign-In" class="w-6 h-6 mr-2">
+        Sign in with Google
+      </a>
+    </div>
+
+    <p class="text-center text-sm text-gray-600">
+      Don't have an account? <a href="/user/signUp" class="text-blue-600 hover:text-blue-500">Sign up</a>
+    </p>
+  </div>
+</div>
