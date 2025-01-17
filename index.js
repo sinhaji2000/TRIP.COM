@@ -7,6 +7,7 @@ const db = require("./config/mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocal = require("./config/passportLocal");
+const passportJWT = require("./config/passport-jwt");
 const User = require("./models/user");
 const upload = require("./config/multerConfig");
 require("dotenv").config();
@@ -59,6 +60,7 @@ app.use(passportLocal.setAuthenticatedUser);
 app.use(dashboardRoutes);
 app.use("/user", require("./routes/userRoutes"));
 app.use("/trip", require("./routes/tripRoutes"));
+app.use("/api", require("./routes/api/v1/index"));
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
