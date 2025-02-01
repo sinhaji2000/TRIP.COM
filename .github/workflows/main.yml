@@ -1,0 +1,24 @@
+name: "Trip.com"
+
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: "Setup Node.js"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: "Checkout Repository"
+        uses: actions/checkout@v2
+
+      - name: "Install Dependencies"
+        run: npm install
+
+      - name: "Install PM2 Globally"
+        run: npm install -g pm2
+
+      - name: "Deploy to AWS"
+        run: pm2 start index.js
