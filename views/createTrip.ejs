@@ -4,50 +4,53 @@
       <h1 class="text-2xl font-bold mb-4 text-gray-800">Create a New Trip</h1>
 
       <form action="/trip/createTrip" method="POST" class="space-y-6">
-
         <div class="flex items-start gap-6">
           <!-- Trip Title -->
           <div class="flex-1">
             <label for="tripTitle" class="block text-gray-700 font-medium mb-2">Trip Title:</label>
-            <input type="text" id="tripTitle" name="tripTitle" 
-                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black" 
-                   required>
+            <input type="text" id="tripTitle" name="tripTitle" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black" required>
           </div>
-        
+
           <!-- Trip Start Date -->
           <div>
             <label for="tripStartDate" class="block text-gray-700 font-medium mb-2">Trip Start Date:</label>
-            <input type="date" id="tripStartDate" name="date" 
-                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400  text-black" 
-                   required>
+            <input type="date" id="tripStartDate" name="date" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400  text-black" required>
           </div>
         </div>
-        
 
         <h2 class="text-xl font-semibold text-gray-800">Expenses</h2>
         <div id="expensesContainer" class="space-y-4">
-          <!-- Expense Input Fields -->
           <div class="expense bg-gray-50 p-4 rounded-lg shadow-sm">
             <label for="expenses[0][title]" class="block text-gray-700 mb-2">Expense Title:</label>
-            <input type="text" id="expenses[0][title]" name="expenses[0][title]" class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400  text-black" placeholder="e.g., Fuel" required>
+            <input type="text" id="expenses[0][title]" name="expenses[0][title]" class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black" placeholder="e.g., Fuel" required>
 
             <label for="expenses[0][amount]" class="block text-gray-700 mb-2">Amount:</label>
-            <input type="number" id="expenses[0][amount]" name="expenses[0][amount]" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400  text-black" placeholder="e.g., 2000" required>
+            <input type="number" id="expenses[0][amount]" name="expenses[0][amount]" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black" placeholder="e.g., 2000" required>
           </div>
         </div>
         <button type="button" onclick="addExpense()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400">
           Add More Expense
         </button>
 
+        <h2 class="text-xl font-semibold text-gray-800">Stops</h2>
+        <div id="stopsContainer" class="space-y-4">
+          <div class="stop bg-gray-50 p-4 rounded-lg shadow-sm">
+            <label for="stops[0]" class="block text-gray-700 font-medium mb-2">Stop Name:</label>
+            <input type="text" id="stops[0]" name="stops[]" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black" placeholder="e.g., Stop 1" required>
+          </div>
+        </div>
+        <button type="button" onclick="addStop()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400">
+          Add More Stop
+        </button>
+
         <h2 class="text-xl font-semibold text-gray-800">Participants</h2>
         <div id="participantsContainer" class="space-y-4">
-          <!-- Participant Input Fields -->
           <div class="participant bg-gray-50 p-4 rounded-lg shadow-sm">
             <label for="participants[0][email]" class="block text-gray-700 mb-2">Participant Email:</label>
             <input type="email" id="participants[0][email]" name="participants[0][email]" class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black" placeholder="e.g., user@example.com" required>
 
             <label for="participants[0][amount]" class="block text-gray-700 mb-2">Amount:</label>
-            <input type="number" id="participants[0][amount]" name="participants[0][amount]" class="w-full border  text-black border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="e.g., 1000" required>
+            <input type="number" id="participants[0][amount]" name="participants[0][amount]" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black" placeholder="e.g., 1000" required>
           </div>
         </div>
         <button type="button" onclick="addParticipant()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400">
@@ -65,11 +68,12 @@
   <script>
     let expenseCount = 1;
     let participantCount = 1;
+    let stopCount = 1;
 
     function addExpense() {
       const expensesContainer = document.getElementById('expensesContainer');
       const expenseDiv = document.createElement('div');
-      expenseDiv.classList.add('expense', 'bg-gray-50', 'p-4', 'rounded-lg', 'shadow-sm', 'mt-4' , "text-black");
+      expenseDiv.classList.add('expense', 'bg-gray-50', 'p-4', 'rounded-lg', 'shadow-sm', 'mt-4', 'text-black');
 
       expenseDiv.innerHTML = `
         <label for="expenses[${expenseCount}][title]" class="block text-gray-700 mb-2">Expense Title:</label>
@@ -82,15 +86,27 @@
                class="w-full border border-gray-300 rounded-lg px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
                placeholder="e.g., 1500" required>
       `;
-
       expensesContainer.appendChild(expenseDiv);
       expenseCount++;
+    }
+
+    function addStop() {
+      const stopsContainer = document.getElementById('stopsContainer');
+      const stopDiv = document.createElement('div');
+      stopDiv.classList.add('stop', 'bg-gray-50', 'p-4', 'rounded-lg', 'shadow-sm', 'mt-4', 'text-black');
+
+      stopDiv.innerHTML = `
+        <label for="stops[${stopCount}]" class="block text-gray-700 font-medium mb-2">Stop Name:</label>
+        <input type="text" id="stops[${stopCount}]" name="stops[]" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black" placeholder="e.g., Stop ${stopCount + 1}" required>
+      `;
+      stopsContainer.appendChild(stopDiv);
+      stopCount++;
     }
 
     function addParticipant() {
       const participantsContainer = document.getElementById('participantsContainer');
       const participantDiv = document.createElement('div');
-      participantDiv.classList.add('participant', 'bg-gray-50', 'p-4', 'rounded-lg', 'shadow-sm', 'mt-4' , 'text-black');
+      participantDiv.classList.add('participant', 'bg-gray-50', 'p-4', 'rounded-lg', 'shadow-sm', 'mt-4', 'text-black');
 
       participantDiv.innerHTML = `
         <label for="participants[${participantCount}][email]" class="block text-gray-700 mb-2">Participant Email:</label>
@@ -103,7 +119,6 @@
                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black"
                placeholder="e.g., 1000" required>
       `;
-
       participantsContainer.appendChild(participantDiv);
       participantCount++;
     }

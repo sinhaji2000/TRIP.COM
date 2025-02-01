@@ -11,7 +11,10 @@ exports.getcreateTrip = async (req, res) => {
 
 exports.postcreateTrip = async (req, res) => {
   try {
-    const { tripTitle, date, expenses, participants } = req.body;
+    const { tripTitle, date, expenses, stopName, participants } = req.body;
+    if (!Array.isArray(stopName)) {
+      console.log("stopName is not an array");
+    }
 
     const userId = req.user._id;
 

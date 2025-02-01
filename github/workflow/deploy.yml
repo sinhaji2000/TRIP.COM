@@ -1,0 +1,23 @@
+name : "Trip.com"
+
+on : wordkflow_dispatch
+
+jobs : 
+      deploy :
+        runs-on : self-hosted
+        steps :
+          -name : "setup-nodejs"
+           uses : actions/setup-node@v4
+           with :
+             node-version : "20"
+          -name : "checkout"
+          uses : actions/checkout@v2
+
+          -name : "install-dependencies"
+          run : npm install
+
+          -name : "install pm2 globally"
+          run : npm install -g pm2
+
+          -name : "Deploy to aws"
+          run: pm2 start index.js
