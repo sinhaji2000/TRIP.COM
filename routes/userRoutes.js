@@ -36,7 +36,7 @@ Router.post(
 );
 Router.post("/signOut", userController.postSignOut);
 
-Router.get(
+/*Router.get(
   "/auth/google",
   passportGoogle.authenticate("google", { scope: ["profile", "email"] })
 );
@@ -47,6 +47,6 @@ Router.get(
     failureRedirect: "/user/signIn",
   }),
   userController.postSignIn
-);
+);*/
 //localhost:3000/user/google/callback
 http: module.exports = Router;
