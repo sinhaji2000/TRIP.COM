@@ -6,23 +6,23 @@ pipeline {
             agent {
                 docker {
                     image 'node:18-alpine'
-                    reuseNode true
+                    args '--user root' // Run as root to avoid permission issues
                 }
             }
             steps {
                 script {
                     sh 'echo "Setting npm cache directory..."'
-                    sh 'npm config set cache /tmp/.npm'
+                    sh 'mkdir -p /home/node/.npm && npm config set cache /home/node/.npm'
 
                     sh 'echo "Listing files before build..."'
                     sh 'ls -l'
                     
                     sh 'echo "Installing dependencies..."'
-                    sh 'npm install --unsafe-perm'
-                    
+                    sh 'npm install --unsafe-perm --cache /home/node/.npm'
+
                     sh 'echo "Checking npm version..."'
                     sh 'npm --version'
-                    
+
                     sh 'echo "Running build..."'
                     sh 'npm run build'
                     
