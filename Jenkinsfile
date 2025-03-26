@@ -24,7 +24,7 @@ pipeline {
                     sh 'npm --version'
 
                     sh 'echo "Running build..."'
-                    sh 'npm run build'
+                    sh 'npm start'
                     
                     sh 'echo "Listing files after build..."'
                     sh 'ls -l'
